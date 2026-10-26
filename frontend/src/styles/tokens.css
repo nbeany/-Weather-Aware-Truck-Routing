@@ -1,0 +1,78 @@
+:root {
+  /* Interface: black and white with neutral greys only */
+  --text: #0a0a0a;
+  --muted: #525252;
+  --quiet: #737373;
+  --link: #0a0a0a;
+  --primary: #0a0a0a;
+  --primary-hover: #262626;
+  --surface: #ffffff;
+  --canvas: #f5f5f5;
+  --divider: #e5e5e5;
+  --field-border: #d4d4d4;
+  --field-bg: #f5f5f5;
+  --selected-bg: #f2f2f2;
+  --info-bg: #f5f5f5;
+  --success-bg: #f2f2f2;
+  --success-text: #0a0a0a;
+  --warning-bg: #f5f5f5;
+  --warning-text: #262626;
+  --error-bg: #ffffff;
+  --error-text: #0a0a0a;
+  --segmented-track: #f0f0f0;
+  --segmented-selected: #ffffff;
+  --segmented-border: #d4d4d4;
+  --footer-bg: #fafafa;
+
+  /* Data: risk levels keep their colours so the map stays readable */
+  --risk-low: #2f7d4a;
+  --risk-moderate: #8a6a00;
+  --risk-high: #c2410c;
+  --risk-severe: #b42318;
+  --risk-no-travel: #5a183a;
+  --risk-no-data: #596a79;
+
+  --ink: #0a0a0a;
+  --ink-soft: #171717;
+  --paper: #ffffff;
+  --glass: rgba(255, 255, 255, 0.92);
+  --glass-strong: rgba(255, 255, 255, 0.97);
+  --glass-border: rgba(10, 10, 10, 0.08);
+
+  --panel-shadow: 0 24px 56px -16px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --lift-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.22);
+  --cta-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.55);
+  --attribution-bg: rgba(255, 255, 255, 0.9);
+  --focus-ring: 0 0 0 3px rgba(10, 10, 10, 0.18);
+  --font-family: "Geist Variable", Geist, ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono Variable", "Geist Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --font-12: 12px;
+  --font-13: 13px;
+  --font-14: 14px;
+  --font-16: 16px;
+  --font-20: 20px;
+  --font-24: 24px;
+  --line-tight: 1.2;
+  --line-normal: 1.5;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 700;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --radius-small: 8px;
+  --radius-card: 12px;
+  --radius-control: 10px;
+  --radius-panel: 18px;
+  --radius-pill: 999px;
+  --panel-width: 380px;
+  --touch-target: 44px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
