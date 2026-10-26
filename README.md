@@ -3,9 +3,9 @@
 Recommends the safest truck route between two North American locations by combining turn-by-turn routing with hourly weather forecasts sampled at route checkpoints. Route options are scored against configurable risk thresholds and truck load rules, with an interactive corridor weather heatmap across a 48-hour departure window.
 
 ### Try It
-- Live application: https://weather-aware-truck-routing-1-og3f.onrender.com
-- Offline sample trip: Visit https://weather-aware-truck-routing-1-og3f.onrender.com/?demo=sample (or append `?demo=sample` locally) to reveal the "Load Sample Trip" button in the Trip form header. Clicking it instantly loads a pre-computed Salt Lake City to Provo route, checkpoints, and 48-hour heatmap data without external API calls.
-- Hosting note: The free Render web service spins down after 15 minutes of inactivity. Initial page load and first query can take up to 60 seconds while the backend wakes up (the UI displays a "waking up" notice during startup).
+- Live application: https://routecast-wn9r.onrender.com
+- Offline sample trip: Visit https://routecast-wn9r.onrender.com/?demo=sample (or append `?demo=sample` locally) to reveal the "Load Sample Trip" button in the Trip form header. Clicking it instantly loads a pre-computed Salt Lake City to Provo route, checkpoints, and 48-hour heatmap data without external API calls.
+- Hosting note: The app runs as one free Render web service (frontend and API together). It spins down after 15 minutes of inactivity, so the first page load can take up to 60 seconds while it wakes up (the UI displays a "waking up" notice during startup).
 - TODO: screenshots (route comparison view, corridor heatmap with 0-48 h time slider, checkpoint risk popup).
 
 ## Requirements Matrix
