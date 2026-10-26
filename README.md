@@ -19,7 +19,7 @@ Recommends the safest truck route between two North American locations by combin
 | Recommendation by the four criteria | Done | `backend/analysis/scoring.py` |
 | Map with routes, checkpoints, risk, ETAs and route summaries (click a route line or checkpoint) | Done | `frontend/src/RouteMap.tsx` |
 | Heatmap with 0-48 h slider | Done | `backend/api/heatmap.py`, `frontend/src/App.tsx` |
-| Hosted app | Done | Render (Web Service + Static Site; see `docs/DEPLOY.md`) |
+| Hosted app | Done | Render, one Docker web service from `render.yaml` (see `docs/DEPLOY.md`) |
 | GitHub repo | Done | Repository root, `.github/workflows/ci.yml` |
 
 Route calculation requests the best route plus up to two alternatives (`alternatives=2`). HERE Routing v8 returns 2 or 3 routes depending on corridor connectivity; observed trips returned 2 or 3. When fewer than 3 routes are returned, the API includes the notice `Only N routes available from the routing provider`. A third route is not always available from the provider.
@@ -55,10 +55,11 @@ Checkpoint weather is also sampled at ETA +/- 2 hours. If risk differs at either
 
 ```text
 [ Browser: React 19 + MapLibre GL ]
-         │               │
-  Static Assets     JSON API (/api/analyze, /api/geocode, /api/heatmap)
-         │               ▼
-  [ Render CDN ]  [ Django API (Gunicorn + GZip Middleware) ]
+         │                        │
+  Static assets (/)      JSON API (/api/analyze, /api/geocode, /api/heatmap)
+         ▼                        ▼
+[ One Render web service (Docker): Gunicorn + Django ]
+  WhiteNoise serves the React build · Django handles /api
                          │               │
            Routing & Geocoding      Weather Queries
                          │               ▼
@@ -134,7 +135,7 @@ Detailed rationale is recorded in [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md). Ke
 
 ## Verification
 
-- **Test Suite**: 652 passed unit and property tests executed via `pytest`.
+- **Test Suite**: 657 passed unit and property tests executed via `pytest`.
 - **Risk Engine Coverage**: Float boundaries evaluated with `math.nextafter` for adjacent float transitions, load-rule cutoffs at 30,000 / 40,000 lb, and Hypothesis property tests enforcing monotonicity and invariant rules.
 - **Differential Check**: A differential test against a second implementation written from the brief, with a harness validated by deliberately wrong variants. The second implementation was written by the same AI assistant that wrote the engine, so it checks the code against one reading of the brief, not the reading itself.
 - **Continuous Integration**: GitHub Actions workflow (`.github/workflows/ci.yml`) runs linting (`ruff check .`) and the full test suite (`pytest`) on Python 3.12 for every push and pull request.
