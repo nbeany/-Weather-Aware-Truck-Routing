@@ -48,6 +48,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # Serves the built frontend (see FRONTEND_DIST) before Django routing.
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.gzip.GZipMiddleware",
     "django.middleware.common.CommonMiddleware",
     "api.middleware.FrontendCorsMiddleware",
@@ -73,4 +75,16 @@ REST_FRAMEWORK = {"EXCEPTION_HANDLER": "api.errors.exception_handler"}
 
 USE_TZ = True
 STATIC_URL = "static/"
+
+# Single-service deploys: when the React build exists, WhiteNoise serves it at the site
+# root ("/" returns index.html) next to the /api routes. Without it, the API runs alone and
+# the frontend is hosted separately (VITE_API_BASE_URL + FRONTEND_ORIGIN).
+FRONTEND_DIST = Path(
+    os.environ.get("FRONTEND_DIST", "").strip() or BASE_DIR.parent / "frontend" / "dist"
+)
+if FRONTEND_DIST.is_dir():
+    WHITENOISE_ROOT = FRONTEND_DIST
+    WHITENOISE_INDEX_FILE = True
+    # Vite fingerprints everything under /assets/, so those files can be cached forever.
+    WHITENOISE_IMMUTABLE_FILE_TEST = r"^/assets/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

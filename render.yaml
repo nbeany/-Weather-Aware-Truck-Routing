@@ -1,0 +1,20 @@
+# Render Blueprint: one web service that serves the React app and the Django API.
+# Render asks for HERE_API_KEY when the Blueprint is created; everything else is set here.
+services:
+  - type: web
+    name: routecast
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: HERE_API_KEY
+        sync: false
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "false"
+      - key: TRUCK_TIME_FACTOR
+        value: "1.0"
